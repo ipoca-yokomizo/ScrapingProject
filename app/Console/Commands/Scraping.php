@@ -46,10 +46,15 @@ class Scraping extends Command
         //     });
         // });
         $goutte->filter('.articleList')->each(function ($ul) {
-            // $ul->filter('.articleList')->each(function ($li) {
-                // dd($li->filter('li'));
-                echo $ul->filter('li')->text();
-            // });
+            $ul->filter('li')->each(function ($li) {
+                echo $li->filter('a')->attr('href') . "\n";
+                echo $li->filter('h3')->text() . "\n";
+                echo $li->filter('img')->attr('src') . "\n";
+                echo $li->filter('p')->eq(0)->text() . "\n";
+                echo $li->filter('p')->eq(1)->text() . "\n";
+                echo $li->filter('p')->eq(2)->text() . "\n";
+                echo '------------------------------------------------------' . "\n";
+            });
         });
     }
 }
